@@ -7,14 +7,12 @@ window.renderStatistics = function renderStatistics(ctx, names, times) {
   var widthMessage = 420;
   var heightMessage = 270;
   var histogramHeight = 150;
-  var step = histogramHeight / max;
   var indent = 50;
   var initialColumnX = 150;
   var initialColumnY = 250;
   var width = 40;
   var biasResultY = 5;
   var biasNameY = 20;
-
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(initialPositionTextX + biasText, initialPositionTextY + biasText, widthMessage, heightMessage);
 
@@ -25,31 +23,37 @@ window.renderStatistics = function renderStatistics(ctx, names, times) {
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура, вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
-
-  var max = -1;
-  for (var i = 0; i < times.length; i++) {
-    var time = times[i];
-    if (time > max) {
-      max = time;
+  function getMaxNumber() {
+    var max = -1;
+    for (var i = 0; i < times.length; i++) {
+      var time = times[i];
+      if (time > max) {
+        max = time;
+      }
+    }
+    return max;
+  }
+  var maxOfMassive = getMaxNumber(times);
+  var step = histogramHeight / maxOfMassive;
+  function getRandomColor() {
+    var maxIndexColor = 255;
+    return 'rgb(0, 0,' + Math.floor(Math.random() * maxIndexColor) + ')';
+  }
+  function identifyColorChart() {
+    if (names[i] === 'Вы') {
+      return 'red';
+    } else {
+      return getRandomColor();
     }
   }
-
-  for (i = 0; i < times.length; ++i) {
-
+  for (var i = 0; i < times.length; ++i) {
     ctx.fillStyle = 'black';
     ctx.fillText(Math.round(times[i]), initialColumnX + (indent + width) * i, initialColumnY - biasResultY - times[i] * step);
 
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'red';
-    } else {
-      var maxIndexColor = 255;
-      var saturation = Math.floor(Math.random() * maxIndexColor);
-      ctx.fillStyle = 'rgb(0, 0,' + saturation + ')';
-    }
-
+    ctx.fillStyle = identifyColorChart();
     ctx.fillRect(initialColumnX + (indent + width) * i, initialColumnY - times[i] * step, width, times[i] * step);
+
     ctx.fillStyle = 'black';
     ctx.fillText(names[i], initialColumnX + (indent + width) * i, initialColumnY + biasNameY);
   }
-
 };
