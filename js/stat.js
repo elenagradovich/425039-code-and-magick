@@ -1,4 +1,5 @@
 'use strict';
+
 function getMaxNumber(times) {
   var max = -1;
   for (var i = 0; i < times.length; i++) {
