@@ -11,8 +11,7 @@ function getMaxNumber(times) {
   return max;
 }
 function getRandomColor() {
-  var maxIndexColor = 255;
-  return 'rgb(0, 0,' + Math.floor(Math.random() * maxIndexColor) + ')';
+  return 'rgba(0, 0, 255, ' + (1 - Math.random()) + ')';
 }
 function identifyColorChart(i, names) {
   if (names[i] === 'Вы') {
