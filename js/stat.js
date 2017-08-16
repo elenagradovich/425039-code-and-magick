@@ -55,4 +55,4 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = 'black';
     ctx.fillText(names[i], initialColumnX + (indent + width) * i, initialColumnY + biasNameY);
   }
-}
+};
