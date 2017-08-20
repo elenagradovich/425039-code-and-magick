@@ -25,12 +25,10 @@ function createWizardObject() {
   };
 }
 
-var wizards = [
-  createWizardObject(),
-  createWizardObject(),
-  createWizardObject(),
-  createWizardObject()
-];
+var wizards = [];
+for (var i = 0; i < 4; i++) {
+  wizards.push(createWizardObject());
+}
 
 function generateWizard(wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
