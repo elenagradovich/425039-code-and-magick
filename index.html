@@ -63,12 +63,13 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+    <img src="./img/user-1.jpg" class="setup-open-icon" tabindex="0">
   </div>
 </header>
 
 <div class="overlay setup hidden">
   <form class="setup-wizard-form" method="post" enctype="multipart/form-data" autocomplete="off">
+
     <div class="setup-title">
       <div class="setup-user">
         <div class="upload">
@@ -76,11 +77,13 @@
           <input type="file" name="avatar">
         </div>
         <label>
-          <input type="text" name="username" class="setup-user-name" value="Синий Пендальф"/>
+          <input type="text" name="username" class="setup-user-name" value="Синий Пендальф" required minlength="2" maxlength="25"
+            action = "https://1510.dump.academy/code-and-magick"
+            method = "post"
+            enctype="multipart/form-data"/>
         </label>
       </div>
-
-      <span class="setup-close">&times;</span>
+      <span class="setup-close" tabindex="0">&times;</span>
     </div>
 
     <div class="setup-artifacts-shop">
@@ -114,7 +117,7 @@
 
       <div class="setup-fireball-wrap">
         <div class="setup-fireball"></div>
-        <input type="hidden" name="fireball-color" value="#ee4830">
+        <input type="hidden" name="fireball-color" value="#ee4848">
       </div>
 
       <div class="setup-artifacts" dropzone="move">
@@ -142,9 +145,7 @@
 
     <div class="setup-footer">
       <div class="setup-similar hidden">
-
         <h4 class="setup-similar-title">Похожие персонажи</h4>
-
         <div class="setup-similar-list"></div>
       </div>
 
@@ -189,7 +190,7 @@
   }
 
   function getWizardY(height) {
-    return height / 3;
+    return height * 2 / 3;
   }
 
 </script>
