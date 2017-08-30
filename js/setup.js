@@ -47,9 +47,9 @@ userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
-var setupSubmit = document.querySelector('.setup-submit');
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var inputSetupUserName = document.querySelector('.setup-user-name');
 
 var wizardFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
@@ -79,6 +79,21 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
+inputSetupUserName.addEventListener('invalid', function () {
+  if (!inputSetupUserName.validity.valid) {
+    if (inputSetupUserName.validity.tooShort) {
+      inputSetupUserName.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+    } else if (inputSetupUserName.validity.tooLong) {
+      inputSetupUserName.setCustomValidity('Имя не должно превышать 25-ти символов');
+    } else if (inputSetupUserName.validity.valueMissing) {
+      inputSetupUserName.setCustomValidity('Обязательное поле');
+    }
+  } else {
+    inputSetupUserName.setCustomValidity('');
+  }
+});
+
+
 setupClose.addEventListener('click', function () {
   closePopup();
 });
@@ -88,17 +103,6 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
-setupSubmit.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
-
-setupSubmit.addEventListener('click', function () {
-  closePopup();
-});
-
 
 var wizardCoatColor = document.querySelector('#wizard-coat');
 var wizardEyesColor = document.querySelector('#wizard-eyes');
