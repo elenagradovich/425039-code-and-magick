@@ -53,7 +53,7 @@ var inputSetupUserName = document.querySelector('.setup-user-name');
 
 var wizardFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-var onPopupEscPress = function (evt) {
+var popupEscHeandler = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     userDialog.classList.add('hidden');
   }
@@ -61,12 +61,12 @@ var onPopupEscPress = function (evt) {
 
 var openPopup = function () {
   userDialog.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+  document.addEventListener('keydown', popupEscHeandler);
 };
 
 var closePopup = function () {
   userDialog.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
+  document.removeEventListener('keydown', popupEscHeandler);
 };
 
 setupOpen.addEventListener('click', function () {
@@ -79,7 +79,7 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-inputSetupUserName.addEventListener('invalid', function () {
+var inputValidHeandler = function () {
   if (!inputSetupUserName.validity.valid) {
     if (inputSetupUserName.validity.tooShort) {
       inputSetupUserName.setCustomValidity('Имя должно состоять минимум из 2-х символов');
@@ -91,7 +91,10 @@ inputSetupUserName.addEventListener('invalid', function () {
   } else {
     inputSetupUserName.setCustomValidity('');
   }
-});
+};
+
+inputSetupUserName.addEventListener('invalid', inputValidHeandler);
+inputSetupUserName.addEventListener('change', inputValidHeandler);
 
 
 setupClose.addEventListener('click', function () {
