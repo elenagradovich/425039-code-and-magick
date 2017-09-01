@@ -80,6 +80,7 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 var inputValidHeandler = function () {
+  inputSetupUserName.setCustomValidity('');
   if (!inputSetupUserName.validity.valid) {
     if (inputSetupUserName.validity.tooShort) {
       inputSetupUserName.setCustomValidity('Имя должно состоять минимум из 2-х символов');
