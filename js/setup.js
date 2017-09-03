@@ -55,7 +55,9 @@ var wizardFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848
 
 var popupEscHeandler = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
-    userDialog.classList.add('hidden');
+    if (document.activeElement !== inputSetupUserName) {
+      userDialog.classList.add('hidden');
+    }
   }
 };
 
@@ -95,7 +97,7 @@ var inputValidHeandler = function () {
 };
 
 inputSetupUserName.addEventListener('invalid', inputValidHeandler);
-inputSetupUserName.addEventListener('change', inputValidHeandler);
+inputSetupUserName.addEventListener('input', inputValidHeandler);
 
 
 setupClose.addEventListener('click', function () {
